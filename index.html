@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Gesture Detection</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fingerpose"></script>
+    <!-- <script src="script.js" defer></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/handraisegestures@1.0.0/script.js" defer></script> -->
+    <script src="https://df0sapwgnafls.cloudfront.net" defer></script>
+   
+</head>
+<body>
+    <div id="emoji" style="font-size: 100px; text-align: center; margin-top: 20px;"></div>
+    <video id="video" autoplay playsinline width="640" height="480" style="display: block; margin: 0 auto;"></video>
+    <script>
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((mediaStream) => {
+                const video = document.getElementById("video");
+                video.srcObject = mediaStream;
+                video.addEventListener("loadeddata", () => {
+                    startHandpose(mediaStream);  
+                });
+            })
+            .catch((err) => {
+                console.error("Error accessing webcam: ", err);
+            });
+    </script>
+</body>
+</html>
+
